@@ -34,7 +34,7 @@ namespace SignalRDemo.Web
                 });
             services.AddSession();
 
-
+            services.AddSignalR();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -42,7 +42,7 @@ namespace SignalRDemo.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
-            services.AddSignalR();
+           
 
         }
 
@@ -63,8 +63,11 @@ namespace SignalRDemo.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

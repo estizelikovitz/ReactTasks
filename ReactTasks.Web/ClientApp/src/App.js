@@ -18,7 +18,7 @@ export default class App extends Component {
         return (
             <AuthContextComponent>
                 <Layout>
-                    <Route exact path='/' component={Home} />
+                    <PrivateRoute exact path='/' component={Home} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/logout' component={Logout} />
                     <Route exact path='/Signup' component={SignUp} />

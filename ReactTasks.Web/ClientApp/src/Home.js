@@ -21,7 +21,7 @@ const Home = () => {
             await connection.start();
                 connectionRef.current = connection;
 
-                //connection.invoke("GetAll");
+                connection.invoke("GetAll");
 
                 connection.on('refreshTasks', tasks => setTasks(tasks));
 
@@ -35,7 +35,7 @@ const Home = () => {
     }
 
     const onDoneClick = async (task) => {
-        await connectionRef.current.invoke('completed', { task });
+        await connectionRef.current.invoke('completed', task );
     }
 
 
@@ -70,7 +70,7 @@ const Home = () => {
                         <td>{task.title}</td>
                         <td>{!task.beingDoneBy && <button className="btn btn-dark" onClick={()=>onChooseClick(task)}>I'm doing this one!</button>}
                             {!!task.beingDoneBy && task.beingDoneBy == user.id && <button className="btn btn-success" onClick={()=>onDoneClick(task)}>I'm done!</button>}
-                            {!!task.beingDoneBy && task.beingDoneBy != user.id && <button className="btn btn-warning" disabled={true} >{task.userName}is doing this</button>}
+                            {!!task.beingDoneBy && task.beingDoneBy != user.id && <button className="btn btn-warning" disabled={true} >{task.userName} is doing this</button>}
                         </td>
                     </tr>
                 })}
